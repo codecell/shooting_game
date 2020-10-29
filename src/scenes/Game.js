@@ -5,7 +5,7 @@ import logo from '../assets/logo.png'
 import asteroidImage from '../assets/asteroid.png'
 import playerImage from '../assets/player.png'
 import enemyAimage from '../assets/enemyAimage.png'
-import enemyBimage from '../assets/enemyBImage.png'
+import enemyBimage from '../assets/enemyBimage.png'
 
 import explosionImage from '../assets/explosionImg.PNG'
 import enemyAmmoImage from '../assets/enemyAmmoImage.png';
