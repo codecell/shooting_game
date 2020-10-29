@@ -4,6 +4,8 @@ import Logo from '../assets/logo.png'
 import btnRestart from "../assets/btnRestart.png";
 import btnRestartHover from "../assets/btnRestartHover.png";
 import btnRestartDown from "../assets/btnRestartDown.png";
+
+import Button from '../utils/Button'
  
 class GameOver extends Phaser.Scene {
   constructor () {
@@ -19,34 +21,12 @@ class GameOver extends Phaser.Scene {
   }
    
   create () {
-    // this.scene.start('Options');
+    this.buttonRestart = new Button(this, 250, 320, 'blueButton1', 'blueButton2', 'Restart', 'Game');
 
-    this.buttonRestart = this.add.sprite(
-      this.game.config.width * 0.5,
-      this.game.config.height * 0.5,
-      "btnRestart"
-    );
-    this.buttonRestart.setInteractive();
-
-    this.buttonRestart.on("pointerover", function() {
-      this.buttonRestart.setTexture("btnRestartHover");
-      // this.sfx.btnOver.play();
-    }, this);
-
-    this.buttonRestart.on("pointerout", function() {
-      this.setTexture("btnRestart");
-    });
-
-    this.buttonRestart.on("pointerdown", function() {
-      this.buttonRestart.setTexture("btnRestartDown");
-      // this.sfx.btnDown.play();
-    }, this);
-
-    this.buttonRestart.on("pointerup", function() {
-      this.buttonRestart.setTexture("btnRestart");
-      this.scene.start("Game");
-    }, this);
+     // Options
+     this.optionsButton = new Button(this, 250, 320 + 100, 'blueButton1', 'blueButton2', 'Options', 'Options');
   }
+  
 };
 
 export default GameOver
