@@ -8,40 +8,6 @@ module.exports = merge(base, {
   output: {
     filename: "bundle.min.js"
   },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
-        }
-      },
-      {
-        test: /\.css?$/,
-        use: [
-          'style-loader',
-          'css-loader',
-        ],
-      },
-      {
-        test: [/\.vert$/, /\.frag$/],
-        use: "raw-loader"
-      },
-      {
-        test: /\.(gif|png|jpe?g|svg|xml|mp3)$/i,
-        use: "file-loader"
-      },
-      {
-        test: /\.mp3$/i,
-        use: 'file-loader'
-      },
-      {
-        test: /\.wav$/i,
-        use: 'file-loader'
-      }
-    ]
-  },
   devtool: false,
   performance: {
     maxEntrypointSize: 900000,
