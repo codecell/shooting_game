@@ -6,6 +6,8 @@ import asteroidImage from '../assets/asteroid.png'
 import playerImage from '../assets/player.png'
 import enemyAimage from '../assets/enemyAimage.png'
 import enemyBimage from '../assets/enemyBimage.png'
+import bgA from '../assets/bgA.png'
+import bgB from '../assets/bgB.png'
 
 import explosionImage from '../assets/explosionImg.PNG'
 import enemyAmmoImage from '../assets/enemyAmmoImage.png';
@@ -13,12 +15,15 @@ import playerAmmoImage from '../assets/playerAmmoImage.png'
 
 // Audio
 import laserSound from '../assets/sounds/laserSound.wav'
+import explode1 from '../assets/sounds/explodeA.wav'
+import explode2 from '../assets/sounds/explodeB.wav'
+import explode3 from '../assets/sounds/explodeC.wav'
+
 
 // entities
-import Player from '../entities/Player'
-import EnemyA from '../entities/EnemyA'
-import EnemyB from '../entities/EnemyB'
-import Asteroid from '../entities/Asteroid'
+import {
+  Player, EnemyA, EnemyB, Asteroid, Background
+} from '../entities'
  
 export default class Game extends Phaser.Scene {
   constructor () {
@@ -26,19 +31,20 @@ export default class Game extends Phaser.Scene {
   }
  
   preload () {
-    const loadImages = {
+    const ImageAssetsHash = {
       'logo': logo,
       'asteroid': asteroidImage,
-      'enemyAimage': enemyAimage,
       'enemyBimage': enemyBimage,
       'player': playerImage,
       'enemyAmmoImage': enemyAmmoImage,
-      'playerAmmoImage': playerAmmoImage
+      'playerAmmoImage': playerAmmoImage,
+      'bgA': bgA,
+      'bgB': bgB
     }
 
-    for (let key in loadImages) {
+    for (let key in ImageAssetsHash) {
       // load images
-      this.load.image(key, loadImages[key]);
+      this.load.image(key, ImageAssetsHash[key]);
     }
 
     this.load.spritesheet("explosionImg", explosionImage, {
@@ -46,19 +52,23 @@ export default class Game extends Phaser.Scene {
       frameHeight: 28
     });
 
-    // this.load.spritesheet("enemyAimage", enemyAimage, {
-    //   frameWidth: 16,
-    //   frameHeight: 16
-    // });
+    this.load.spritesheet("enemyAimage", enemyAimage, {
+      frameWidth: 16,
+      frameHeight: 16
+    });
+
     this.load.audio("laserSound", laserSound);
+    this.load.audio('explodeA', explode1);
+    this.load.audio('explodeB', explode2);
+    this.load.audio('explodeC', explode3);
   }
  
   create () {
     // this.add.image(400, 300, 'logo');
 
     this.anims.create({
-      key: enemyAimage,
-      frames: this.anims.generateFrameNumbers(enemyAimage),
+      key: 'enemyAimage',
+      frames: this.anims.generateFrameNumbers('enemyAimage'),
       frameRate: 20,
       repeat: -1
     });
@@ -70,31 +80,25 @@ export default class Game extends Phaser.Scene {
       repeat: 0
     });
 
-    this.anims.create({
-      key: "player",
-      frames: this.anims.generateFrameNumbers(playerImage),
-      frameRate: 20,
-      repeat: -1
-    });
-
     this.sfx = {
       explosions: [
-        // this.sound.add("sndExplode0"),
-        // this.sound.add("sndExplode1")
+        this.sound.add('explodeA'),
+        this.sound.add('explodeB'),
+        this.sound.add('explodeC')
       ],
       laser: this.sound.add("laserSound")
     };
 
     this.backgrounds = [];
-    // for (var i = 0; i < 5; i++) {
-    //   var bg = new ScrollingBackground(this, "sprBg0", i * 10);
-    //   this.backgrounds.push(bg);
-    // }
+    for (var i = 0; i < 5; i++) {
+      var bg = new Background(this, 'bgA', i * 10);
+      this.backgrounds.push(bg);
+    }
 
     this.player = new Player(
       this,
       this.game.config.width * 0.5,
-      this.game.config.height * 0.5,
+      this.game.config.height - 100,
       "player"
     );
 
@@ -110,31 +114,18 @@ export default class Game extends Phaser.Scene {
 
     this.time.addEvent({
       delay: 1000,
-      callback: function() {
-        var enemy = null;
+      callback: () => {
+        let enemy = null;
+        const randomLocus = Phaser.Math.Between(0, this.game.config.width);
+
         if (Phaser.Math.Between(0, 10) >= 3) {
-          enemy = new EnemyA(
-            this,
-            Phaser.Math.Between(0, this.game.config.width),
-            0
-          );
+          enemy = new EnemyA(this, randomLocus, 0);
+        } else if (Phaser.Math.Between(0, 10) >= 5 && this.getEnemyType("Asteroid").length < 5) {
+          enemy = new Asteroid(this, randomLocus, 0);
+        } else {
+          enemy = new EnemyB(this, randomLocus, 0);
         }
-        else if (Phaser.Math.Between(0, 10) >= 5) {
-          if (this.getEnemiesByType("Asteroid").length < 5) {
-            enemy = new Asteroid(
-              this,
-              Phaser.Math.Between(0, this.game.config.width),
-              0
-            );
-          }
-        }
-        else {
-          enemy = new EnemyB(
-            this,
-            Phaser.Math.Between(0, this.game.config.width),
-            0
-          );
-        }
+        
         if (enemy !== null) {
           this.enemies.add(enemy);
         }
@@ -178,80 +169,52 @@ export default class Game extends Phaser.Scene {
       }
     }
 
-    for (var i = 0; i < this.enemies.getChildren().length; i++) {
-      var enemy = this.enemies.getChildren()[i];
-      enemy.update();
 
-      if (enemy.x < -enemy.displayWidth ||
-        enemy.x > this.game.config.width + enemy.displayWidth ||
-        enemy.y < -enemy.displayHeight * 4 ||
-        enemy.y > this.game.config.height + enemy.displayHeight) {
-        if (enemy) {
-          if (enemy.onDestroy !== undefined) {
-            enemy.onDestroy();
-          }
-          enemy.destroy();
-        }
-      }
+    this.doCollision(this.enemies, this.player);
+    this.doCollision(this.enemyAmmos, this.player);
+    this.doCollision(this.playerAmmos)
 
-      this.physics.add.overlap(this.player, this.enemies, function(player, enemy) {
-        if (!player.getData("isDead") &&
-            !enemy.getData("isDead")) {
-          player.explode(false);
-          player.onDestroy();
-          enemy.explode(true);
-        }
-      });
-    }
-
-    for (var i = 0; i < this.enemyAmmos.getChildren().length; i++) {
-      var laser = this.enemyAmmos.getChildren()[i];
-      laser.update();
-      if (laser.x < -laser.displayWidth ||
-        laser.x > this.game.config.width + laser.displayWidth ||
-        laser.y < -laser.displayHeight * 4 ||
-        laser.y > this.game.config.height + laser.displayHeight) {
-        if (laser) {
-          laser.destroy();
-        }
-      }
-
-      this.physics.add.overlap(this.player, this.enemyAmmos, function(player, laser) {
-        if (!player.getData("isDead") &&
-            !laser.getData("isDead")) {
-          player.explode(false);
-          player.onDestroy();
-          laser.destroy();
-        }
-      });
-    }
-
-    for (var i = 0; i < this.playerAmmos.getChildren().length; i++) {
-      var laser = this.playerAmmos.getChildren()[i];
-      laser.update();
-      if (laser.x < -laser.displayWidth ||
-        laser.x > this.game.config.width + laser.displayWidth ||
-        laser.y < -laser.displayHeight * 4 ||
-        laser.y > this.game.config.height + laser.displayHeight) {
-        if (laser) {
-          laser.destroy();
-        }
-      }
-    }
-
-    for (var i = 0; i < this.backgrounds.length; i++) {
-      this.backgrounds[i].update();
-    }
+    this.backgrounds.forEach((bg) => {
+      bg.update();
+    })
   }
 
-  getEnemiesByType(type) {
-    var arr = [];
-    for (var i = 0; i < this.enemies.getChildren().length; i++) {
-      var enemy = this.enemies.getChildren()[i];
-      if (enemy.getData("type") == type) {
-        arr.push(enemy);
-      }
-    }
+  getEnemyType(type) {
+    const arr = [];
+
+    this.enemies.getChildren().forEach((adversary) => {
+      if (adversary.getData("type") == type) {
+        arr.push(adversary);
+      };
+    })
+
     return arr;
+  }
+
+  doCollision (entityA, entityB = false) {
+    entityA.getChildren().forEach((adversary) => {
+      adversary.update();
+
+      if (adversary.x < -adversary.displayWidth ||
+        adversary.x > this.game.config.width + adversary.displayWidth ||
+        adversary.y < -adversary.displayHeight * 4 ||
+        adversary.y > this.game.config.height + adversary.displayHeight) {
+        if (adversary) {
+          if (adversary.onDestroy !== undefined) {
+            adversary.onDestroy();
+          }
+          adversary.destroy();
+        }
+      }
+
+      entityB && this.physics.add.overlap(entityB, entityA, (player, adversary) => {
+        if (!player.getData("isDead") &&
+            !adversary.getData("isDead")) {
+          player.explode(false);
+          player.onDestroy();
+          adversary.explode(true);
+        };
+      });
+    });
   }
 };

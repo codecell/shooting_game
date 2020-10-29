@@ -1,4 +1,8 @@
 import 'phaser';
+import {
+  resourcesRefs, musicDetails,
+  displayItem, renderCreditTween,
+} from '../utils/constants'
  
 export default class Credits extends Phaser.Scene {
   constructor () {
@@ -8,42 +12,36 @@ export default class Credits extends Phaser.Scene {
   create () {
     this.creditsText = this.add.text(0, 0, 'Credits', { fontSize: '32px', fill: '#fff' });
     this.madeByText = this.add.text(0, 0, 'Created By: Alfred Ezaka', { fontSize: '26px', fill: '#fff' });
-    // this.zone = this.add.zone(config.width/2, config.height/2, config.width, config.height);
-    this.zone = this.add.zone(400, 300, 800, 600)
-    
-    Phaser.Display.Align.In.Center(
-      this.creditsText,
-      this.zone
-    );
-    
-    Phaser.Display.Align.In.Center(
-      this.madeByText,
-      this.zone
-    );
-    
-    this.madeByText.setY(1000);
+    this.musicByText = this.add.text(0, 0, musicDetails, { fontSize: '26px', fill: '#fff' });
+    this.resourcesText = this.add.text(0, 0, resourcesRefs, { fontSize: '18px', fill: '#fff' });
 
-    this.creditsTween = this.tweens.add({
-      targets: this.creditsText,
-      y: -100,
-      ease: 'Power1',
-      duration: 3000,
-      delay: 1000,
-      onComplete: function () {
-        this.destroy;
-      }
-    });
-     
-    this.madeByTween = this.tweens.add({
-      targets: this.madeByText,
-      y: -300,
-      ease: 'Power1',
-      duration: 8000,
-      delay: 1000,
-      onComplete: function () {
-        this.madeByTween.destroy;
-        this.scene.start('Title');
-      }.bind(this)
-    });
+    // (config.width/2, config.height/2, config.width, config.height);
+    this.zone = this.add.zone(250, 320, 500, 640);
+    
+    displayItem(this.creditsText, this.zone);
+    displayItem(this.madeByText, this.zone);
+    displayItem(this.musicByText, this.zone);
+    displayItem(this.resourcesText, this.zone);
+    
+    this.creditsText.setY(500)
+    this.musicByText.setY(600);
+    this.resourcesText.setY(750);
+    this.madeByText.setY(1000);    
+
+    this.creditsTween = renderCreditTween(
+      this.tweens, this.creditsText, this.creditsTween,  this.scene, 4000, this
+    );
+
+    this.musicByTween = renderCreditTween(
+      this.tweens, this.musicByText, this.musicByTween,  this.scene, 5000, this
+    );
+
+    this.resourcesByTween = renderCreditTween(
+      this.tweens, this.resourcesText, this.resourcesByTween,  this.scene, 6000, this, true
+    );
+
+    this.madeByTween = renderCreditTween(
+      this.tweens, this.madeByText, this.madeByTween,  this.scene, 7000, this
+    );
   }
 };

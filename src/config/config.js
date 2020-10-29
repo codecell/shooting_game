@@ -10,8 +10,8 @@ export default {
   type: Phaser.AUTO,
   backgroundColor: "black",
   parent: "phaser-example",
-  width: 800,
-  height: 600,
+  width: 500,
+  height: 640,
   physics: {
     default: "arcade",
     arcade: {
@@ -22,7 +22,3 @@ export default {
   pixelArt: true,
   roundPixels: true
 };
-
-// const game = new Phaser.Game(config);
-
-// export default config;

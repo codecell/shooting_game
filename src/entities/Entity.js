@@ -15,7 +15,7 @@ class Entity extends Phaser.GameObjects.Sprite {
     if (!this.getData("isDead")) {
       this.setTexture("explosionImg");
       this.play("explosionImg");
-      // this.scene.sfx.explosions[Phaser.Math.Between(0, this.scene.sfx.explosions.length - 1)].play();
+      this.scene.sfx.explosions[Phaser.Math.Between(0, this.scene.sfx.explosions.length - 1)].play();
 
       if (this.shootTimer !== undefined) {
         if (this.shootTimer) {

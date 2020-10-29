@@ -6,8 +6,8 @@ class Asteroid extends Entity {
     this.body.velocity.y = Phaser.Math.Between(50, 100);
     this.states = { MOVE_DOWN: "MOVE_DOWN", CHASE: "CHASE" };
     this.state = this.states.MOVE_DOWN;
-    this.scaleX = 0.2;
-    this.scaleY = 0.2;
+    this.scaleX = 0.25;
+    this.scaleY = 0.25;
   }
 
   update() {

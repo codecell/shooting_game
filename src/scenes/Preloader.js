@@ -4,7 +4,7 @@ import BoxImg from '../assets/ui/grey_box.png';
 import CheckmarkImg from '../assets/ui/boxCheckmark.png'
 import BackgroundMusicFile from '../assets/bgMusic.wav';
 import BlueButton1 from '../assets/ui/blue_button02.png';
-import BlueButton2 from '../assets/ui/blue_button03.png'
+import BlueButton2 from '../assets/ui/blue_button03.png';
 
  
 class Preloader extends Phaser.Scene {
@@ -14,13 +14,16 @@ class Preloader extends Phaser.Scene {
  
   preload () {
     // add logo image
-    this.add.image(400, 200, Logo);
+    // this.add.image(400, 300, Logo);
    
     // display progress bar
     const progressBar = this.add.graphics();
     const progressBox = this.add.graphics();
     progressBox.fillStyle(0x222222, 0.8);
     progressBox.fillRect(240, 270, 320, 50);
+
+    const customLogo = this.add.image(400, 300, Logo);
+    customLogo.setOrigin(0.05, 0.05)
    
     const width = this.cameras.main.width;
     const height = this.cameras.main.height;
@@ -77,6 +80,7 @@ class Preloader extends Phaser.Scene {
       loadingText.destroy();
       percentText.destroy();
       assetText.destroy();
+      // customLogo.destroy();
       this.ready();
     }.bind(this));
     
@@ -85,7 +89,7 @@ class Preloader extends Phaser.Scene {
     // load assets needed in our game
     this.load.image('blueButton1', BlueButton1);
     this.load.image('blueButton2', BlueButton2);
-    this.load.image('logo', Logo);
+    // this.load.image('logo', Logo);
     this.load.image('box', BoxImg);
     this.load.image('checkedBox', CheckmarkImg);
     this.load.audio('bgMusic', [BackgroundMusicFile]).start();
@@ -104,9 +108,6 @@ class Preloader extends Phaser.Scene {
     if (this.readyCount === 2) {
       this.scene.start('Title');
     }
-  }
- 
-  create () {
   }
 };
 
