@@ -1,17 +1,13 @@
-const path = require('path');
+const merge = require("webpack-merge");
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const base = require("./base");
+const TerserPlugin = require("terser-webpack-plugin");
 
-
-module.exports = {
-  entry: './src/index.js',
-  devtool: "eval-source-map",
+module.exports = merge(base, {
+  mode: "production",
   output: {
-    filename: "bundle.min.js",
-    path: path.resolve(__dirname, 'dist'),
+    filename: "bundle.min.js"
   },
-  watch: true,
   module: {
     rules: [
       {
@@ -46,18 +42,7 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new CleanWebpackPlugin({
-      root: path.resolve(__dirname, "../")
-    }),
-    new webpack.DefinePlugin({
-      CANVAS_RENDERER: JSON.stringify(true),
-      WEBGL_RENDERER: JSON.stringify(true)
-    }),
-    new HtmlWebpackPlugin({
-      template: "./index.html"
-    })
-  ],
+  devtool: false,
   performance: {
     maxEntrypointSize: 900000,
     maxAssetSize: 900000
@@ -73,4 +58,4 @@ module.exports = {
       })
     ]
   }
-};
+});
