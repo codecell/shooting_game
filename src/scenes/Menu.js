@@ -1,7 +1,10 @@
-import logoImg from "../assets/logo.png";
 import Phaser from 'phaser'
 
 class Menu extends Phaser.Scene {
+  constructor () {
+    super('Game')
+  }
+  
   preload() {
     // this.load.image("logo", logoImg);
   }

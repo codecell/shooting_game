@@ -3,6 +3,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
+
 module.exports = {
   mode: "development",
   devtool: "eval-source-map",
@@ -20,8 +21,16 @@ module.exports = {
         use: "raw-loader"
       },
       {
-        test: /\.(gif|png|jpe?g|svg|xml)$/i,
+        test: /\.(gif|png|jpe?g|svg|xml|mp3)$/i,
         use: "file-loader"
+      },
+      {
+        test: /\.mp3$/i,
+        use: 'file-loader'
+      },
+      {
+        test: /\.wav$/i,
+        use: 'file-loader'
       }
     ]
   },
