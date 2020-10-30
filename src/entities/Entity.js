@@ -1,6 +1,6 @@
 import 'phaser';
 import Player from './Player'
-import { Game } from '../scenes'
+import { Game, GameOver } from '../scenes'
 
 class Entity extends Phaser.GameObjects.Sprite {
   constructor(scene, x, y, key, type) {
@@ -21,9 +21,9 @@ class Entity extends Phaser.GameObjects.Sprite {
 
       // Update score in Realtime
       if ((this.__proto__.constructor !== Player) && (this.scene.__proto__.constructor == Game)) {
-        this.scene.score.counter += 5;
+        window.score += 5;
 
-        this.scene.scoreText.setText(`Score: ${this.scene.score.counter}`);
+        this.scene.scoreText.setText(`Score: ${window.score}`);
       }
 
       if (this.shootTimer !== undefined) {

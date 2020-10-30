@@ -4,6 +4,8 @@ import Model from './model'
 
 import './assets/css/style.css'
 
+window.score = 0;
+
 
 class ShootingGame extends Phaser.Game {
   constructor () {

@@ -63,11 +63,8 @@ export default class Game extends Phaser.Scene {
   }
  
   create () {
-    // this.add.image(400, 300, 'logo');
-    this.score = { counter: 0 };
-    this.scoreText = this.add.text(16, 16, `score: ${this.score.counter}`, { fontSize: '32px', fill: '#efefef' });
+    this.scoreText = this.add.text(16, 16, `score: ${window.score}`, { fontSize: '32px', fill: '#efefef' });
 
-    console.log(this.score, '<<<<< >>>>')
     this.anims.create({
       key: 'enemyAimage',
       frames: this.anims.generateFrameNumbers('enemyAimage'),
@@ -92,9 +89,13 @@ export default class Game extends Phaser.Scene {
     };
 
     this.backgrounds = [];
-    for (var i = 0; i < 5; i++) {
-      var bg = new Background(this, 'bgA', i * 10);
+    let backgroundFramesCount = 0;
+
+    while (backgroundFramesCount < 5) {
+      const bg = new Background(this, 'bgA', backgroundFramesCount * 10);
       this.backgrounds.push(bg);
+
+      backgroundFramesCount += 1
     }
 
     this.player = new Player(
@@ -172,8 +173,7 @@ export default class Game extends Phaser.Scene {
       }
     }
 
-    for (var i = 0; i < this.enemies.getChildren().length; i++) {
-      var enemy = this.enemies.getChildren()[i];
+    this.enemies.getChildren().forEach((enemy) => {
       enemy.update();
 
       if (enemy.x < -enemy.displayWidth ||
@@ -196,19 +196,18 @@ export default class Game extends Phaser.Scene {
           enemy.explode(true);
         }
       });
-    }
 
-    // console.log(this.doCollision(this.enemies, this.player), '>>>>>>>>>.')
-    for (var i = 0; i < this.enemyAmmos.getChildren().length; i++) {
-      var laser = this.enemyAmmos.getChildren()[i];
-      laser.update();
-      if (laser.x < -laser.displayWidth ||
-        laser.x > this.game.config.width + laser.displayWidth ||
-        laser.y < -laser.displayHeight * 4 ||
-        laser.y > this.game.config.height + laser.displayHeight) {
-        if (laser) {
-          laser.destroy();
-        }
+    });
+
+    this.enemyAmmos.getChildren().forEach((ammo) => {
+      ammo.update();
+
+      if (ammo.x < -ammo.displayWidth ||
+        ammo.x > this.game.config.width + ammo.displayWidth ||
+        ammo.y < -ammo.displayHeight * 4 ||
+        ammo.y > this.game.config.height + ammo.displayHeight) {
+
+          ammo && ammo.destroy()
       }
 
       this.physics.add.overlap(this.player, this.enemyAmmos, function(player, laser) {
@@ -219,7 +218,7 @@ export default class Game extends Phaser.Scene {
           laser.destroy();
         }
       });
-    }
+    })
 
     this.playerAmmos.getChildren().forEach((playerAmmo) => {
       if (playerAmmo.x < -playerAmmo.displayWidth ||
