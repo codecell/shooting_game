@@ -23,7 +23,7 @@ The game is hosted here => [fightgame](https://fightgame.netlify.app/).
 
 
 ## Description
-  This is basically a shooter desktop game, a single player game. The player has 3 enemy objects(An Artificial Intelliegnce-powered Asteroid and 2 enemy spaceships) to either gun down or avoid completely. 
+  This is basically a shooter desktop game, a single-player game. The player has 3 enemy objects(An Artificial Intelligence-powered Asteroid and 2 enemy spaceships) to either gun down or avoid completely. 
   The game can be controlled with the following commands;
             ====== Movement =====
 
@@ -46,14 +46,14 @@ The game is hosted here => [fightgame](https://fightgame.netlify.app/).
             you directly, Make them
             a priority on sight.
   ## Scoring
-  For each succesful shootdown of an enemy, a player is awarded 5 points.
+  For each successful shootdown of an enemy, a player is awarded 5 points.
 
 ## Credits
-  Much appreciation goes to the followoing for makin available the assets used for making this game, accessed from [Opengameart.org](https://opengameart.org/).
+  Much appreciation goes to the following for making available the assets used for making this game, accessed from [Opengameart.org](https://opengameart.org/).
 
   a. Explosion Sounds: [Master484 ](https://m484games.ucoz.com)
 
-  b. Asteriod: DcZanick
+  b. Asteroid: DcZanick
 
   c. Background: Scorcher24
 
@@ -77,7 +77,7 @@ Follow the steps below run the game in a local environment; First ensure you hav
     ```yarn OR npm install```
 4. Start the webback server.
     ```npm run start```
-webpack will automatiaclly serve the compiled build on http://localhost:8081/.
+webpack will automatically serve the compiled build on http://localhost:8081/.
 
 
 ## Author
@@ -90,7 +90,7 @@ webpack will automatiaclly serve the compiled build on http://localhost:8081/.
 
 ## Show your support
 
-Give a ⭐️ if you like this project!
+Give an ⭐️ if you like this project!
 
 ## Licence
 - MIT
