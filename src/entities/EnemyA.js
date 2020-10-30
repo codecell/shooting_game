@@ -1,21 +1,22 @@
-import Entity from "./Entity"
-import EnemyAmmo from "./EnemyAmmo"
+import Phaser from 'phaser';
+import Entity from './Entity';
+import EnemyAmmo from './EnemyAmmo';
 
 class EnemyA extends Entity {
   constructor(scene, x, y) {
-    super(scene, x, y, "enemyAimage", "EnemyA");
-    this.play("enemyAimage");
+    super(scene, x, y, 'enemyAimage', 'EnemyA');
+    this.play('enemyAimage');
     this.body.velocity.y = Phaser.Math.Between(50, 100);
 
     this.shootTimer = this.scene.time.addEvent({
       delay: 1000,
-      callback: function() {
+      callback() {
         const laser = new EnemyAmmo(this.scene, this.x, this.y);
         laser.setScale(this.scaleX);
         this.scene.enemyAmmos.add(laser);
       },
       callbackScope: this,
-      loop: true
+      loop: true,
     });
   }
 

@@ -1,8 +1,10 @@
+import Phaser from 'phaser';
+
 const musicDetails = `
   Music By: Zack Hemsey
 
   Song Title: The Way
-`
+`;
 
 const resourcesRefs = `
   Explosion Sounds: Master484
@@ -10,32 +12,29 @@ const resourcesRefs = `
   Asteriod: DcZanick
 
   Background: Scorcher24
-`
+`;
 
-const displayItem = (item, zone) => {
-  return Phaser.Display.Align.In.Center(
-    item,
-    zone
-  );
-}
+const displayItem = (item, zone) => Phaser.Display.Align.In.Center(
+  item,
+  zone,
+);
 
-const renderCreditTween = (tweens, target, tweenTarget, scene, duration, model,  bool) => {
-  return tweens.add({
-    targets: target,
-    y: -300,
-    ease: 'Power1',
-    duration: duration,
-    delay: 200,
-    onComplete: ((tweenTarget) => {
-      tweenTarget.destroy;
+const renderCreditTween = (
+  tweens, target, tweenTarget, scene, duration, model, bool,
+) => tweens.add({
+  targets: target,
+  y: -300,
+  ease: 'Power1',
+  duration,
+  delay: 200,
+  onComplete: ((tweenTarget) => {
+    tweenTarget.destroy();
 
-      if (bool) {
-        scene.start('Menu')
-      }
-
-    }).bind(model)
-  });
-}
+    if (bool) {
+      scene.start('Menu');
+    }
+  }),
+});
 
 const instructionsText = `
       ====== Movement =====
@@ -60,25 +59,22 @@ const instructionsText = `
       a priority on sight.
 `;
 
-const instructionsSceneTitle = `Instructions`;
+const instructionsSceneTitle = 'Instructions';
 
-const renderInstrunctionSceneInfo = (add, content, widthz, x, y,  fontSize) => {
-  return add.text(
-    widthz * x, y,
-    content,
-      {
+const renderInstrunctionSceneInfo = (add, content, widthz, x, y, fontSize) => add.text(
+  widthz * x, y,
+  content,
+  {
     fontFamily: 'monospace',
     fontSize,
     fontStyle: 'bold',
     color: 'grey',
-    align: 'center'
-  });
-}
-
-
+    align: 'center',
+  },
+);
 
 export {
   musicDetails, resourcesRefs, instructionsSceneTitle,
   displayItem, renderCreditTween, instructionsText,
-  renderInstrunctionSceneInfo
-}
+  renderInstrunctionSceneInfo,
+};

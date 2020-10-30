@@ -1,6 +1,7 @@
-import 'phaser';
-import Player from './Player'
-import { Game, GameOver } from '../scenes'
+import Phaser from 'phaser';
+import Player from './Player';
+
+import Game from '../scenes/Game';
 
 class Entity extends Phaser.GameObjects.Sprite {
   constructor(scene, x, y, key, type) {
@@ -9,18 +10,21 @@ class Entity extends Phaser.GameObjects.Sprite {
     this.scene = scene;
     this.scene.add.existing(this);
     this.scene.physics.world.enableBody(this, 0);
-    this.setData("type", type);
-    this.setData("isDead", false);
+    this.setData('type', type);
+    this.setData('isDead', false);
   }
 
   explode(canDestroy) {
-    if (!this.getData("isDead")) {
-      this.setTexture("explosionImg");
-      this.play("explosionImg");
-      this.scene.sfx.explosions[Phaser.Math.Between(0, this.scene.sfx.explosions.length - 1)].play();
+    if (!this.getData('isDead')) {
+      this.setTexture('explosionImg');
+      this.play('explosionImg');
+      this.scene.sfx.explosions[
+        Phaser.Math.Between(0, this.scene.sfx.explosions.length - 1)
+      ].play();
 
       // Update score in Realtime
-      if ((this.__proto__.constructor !== Player) && (this.scene.__proto__.constructor == Game)) {
+      if ((Object.getPrototypeOf(this).constructor !== Player
+      ) && (Object.getPrototypeOf(this.scene).constructor === Game)) {
         window.score += 5;
 
         this.scene.scoreText.setText(`Score: ${window.score}`);
@@ -34,16 +38,15 @@ class Entity extends Phaser.GameObjects.Sprite {
 
       this.setAngle(0);
       this.body.setVelocity(0, 0);
-      this.on('animationcomplete', function() {
+      this.on('animationcomplete', function () {
         if (canDestroy) {
           this.destroy();
-        }
-        else {
+        } else {
           this.setVisible(false);
         }
       }, this);
-      
-      this.setData("isDead", true);
+
+      this.setData('isDead', true);
     }
   }
 }

@@ -1,18 +1,18 @@
-import 'phaser';
-import Logo from '../assets/logo.png'
- 
+import Phaser from 'phaser';
+import Logo from '../assets/logo.png';
+
 class Boot extends Phaser.Scene {
-  constructor () {
-    super("Boot");
+  constructor() {
+    super('Boot');
   }
- 
-  preload () {
+
+  preload() {
     this.load.image('logo', Logo);
   }
-   
-  create () {
+
+  create() {
     this.scene.start('Preloader');
   }
-};
+}
 
-export default Boot
+export default Boot;

@@ -1,32 +1,33 @@
-import Entity from "./Entity";
-import PlayerAmmo from "./PlayerAmmo";
+import Phaser from 'phaser';
+import Entity from './Entity';
+import PlayerAmmo from './PlayerAmmo';
 
 class Player extends Entity {
   constructor(scene, x, y, key) {
-    super(scene, x, y, key, "Player");
-    this.setData("speed", 200);
-    this.setData("isShooting", false);
-    this.setData("timerShootDelay", 10);
-    this.setData("timerShootTick", this.getData("timerShootDelay") - 1);
+    super(scene, x, y, key, 'Player');
+    this.setData('speed', 200);
+    this.setData('isShooting', false);
+    this.setData('timerShootDelay', 10);
+    this.setData('timerShootTick', this.getData('timerShootDelay') - 1);
 
     this.scaleX = 0.21;
     this.scaleY = 0.21;
   }
 
   moveUp() {
-    this.body.velocity.y = -this.getData("speed");
+    this.body.velocity.y = -this.getData('speed');
   }
 
   moveDown() {
-    this.body.velocity.y = this.getData("speed");
+    this.body.velocity.y = this.getData('speed');
   }
 
   moveLeft() {
-    this.body.velocity.x = -this.getData("speed");
+    this.body.velocity.x = -this.getData('speed');
   }
 
   moveRight() {
-    this.body.velocity.x = this.getData("speed");
+    this.body.velocity.x = this.getData('speed');
   }
 
   update() {
@@ -34,15 +35,14 @@ class Player extends Entity {
     this.x = Phaser.Math.Clamp(this.x, 0, this.scene.game.config.width);
     this.y = Phaser.Math.Clamp(this.y, 0, this.scene.game.config.height);
 
-    if (this.getData("isShooting")) {
-      if (this.getData("timerShootTick") < this.getData("timerShootDelay")) {
-        this.setData("timerShootTick", this.getData("timerShootTick") + 1);
-      }
-      else {
+    if (this.getData('isShooting')) {
+      if (this.getData('timerShootTick') < this.getData('timerShootDelay')) {
+        this.setData('timerShootTick', this.getData('timerShootTick') + 1);
+      } else {
         const ammo = new PlayerAmmo(this.scene, this.x, this.y);
         this.scene.playerAmmos.add(ammo);
         this.scene.sfx.laser.play();
-        this.setData("timerShootTick", 0);
+        this.setData('timerShootTick', 0);
       }
     }
   }
@@ -51,10 +51,10 @@ class Player extends Entity {
     this.scene.time.addEvent({
       delay: 1000,
       callback: () => {
-        this.scene.scene.start("GameOver");
+        this.scene.scene.start('GameOver');
       },
       callbackScope: this,
-      loop: false
+      loop: false,
     });
   }
 }
