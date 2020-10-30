@@ -18,7 +18,7 @@ The game is hosted here => [fightgame](https://fightgame.netlify.app/).
 |                |                |
 |----------------|----------------|
 |<img src='./src/assets/readme/game.png' />|<img src='./src/assets/readme/game2.png' />|
-!<img src='./src/assets/readme/menu.png' />|!<img src='./src/images/instructions.png' />|
+!<img src='./src/assets/readme/menu.png' />|<img src='./src/images/instructions.png' />|
 
 
 ## Description
