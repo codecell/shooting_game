@@ -3,7 +3,7 @@ import {
   Boot, Preloader, 
   Title, Options,
   Credits, Menu, Game,
-  GameOver
+  GameOver, Instructions
 } from '../scenes'
 
 export default {
@@ -18,7 +18,7 @@ export default {
       gravity: { x: 0, y: 0 }
     }
   },
-  scene: [Boot, Preloader, Title, Options, Credits, Game, GameOver],
+  scene: [Boot, Preloader, Menu, Options, Credits, Instructions, Game, GameOver],
   pixelArt: true,
   roundPixels: true
 };

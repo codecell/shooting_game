@@ -30,14 +30,80 @@ const renderCreditTween = (tweens, target, tweenTarget, scene, duration, model, 
       tweenTarget.destroy;
 
       if (bool) {
-        scene.start('Title')
+        scene.start('Menu')
       }
-      
+
     }).bind(model)
   });
 }
 
+const instructionsText = `
+      ====== Movement =====
+
+      Use Key:
+
+        W - To move UP
+        S - To move DOWN
+        A - To move LEFT
+        D - To move RIGHT
+
+      ====== Attack ======
+
+      Use Key:
+      
+        SPACE BAR - To SHOOT
+
+      ====== Tip ======
+
+      The Asteroids will come at
+      you directly, Make them
+      a priority on sight.
+`;
+
+const instructionsSceneTitle = `Instructions`;
+
+const renderInstrunctionSceneInfo = (add, content, widthz, x, y,  fontSize) => {
+  return add.text(
+    widthz * x, y,
+    content,
+      {
+    fontFamily: 'monospace',
+    fontSize,
+    fontStyle: 'bold',
+    color: 'grey',
+    align: 'center'
+  });
+}
+
+const doCollision  = (entityA, entityB = 0) => {
+  entityA.getChildren().forEach((adversary) => {
+    adversary.update();
+
+    if (adversary.x < -adversary.displayWidth ||
+      adversary.x > this.game.config.width + adversary.displayWidth ||
+      adversary.y < -adversary.displayHeight * 4 ||
+      adversary.y > this.game.config.height + adversary.displayHeight) {
+      if (adversary) {
+        if (adversary.onDestroy !== undefined) {
+          adversary.onDestroy();
+        }
+        adversary.destroy();
+      }
+    }
+
+    entityB && this.physics.add.overlap(entityA, entityB, (player, adversary) => {
+      if (!player.getData("isDead") &&
+          !adversary.getData("isDead")) {
+        player.explode(false);
+        player.onDestroy();
+        adversary.explode(true);
+      };
+    });
+  });
+}
+
 export {
-  musicDetails, resourcesRefs,
-  displayItem, renderCreditTween
+  musicDetails, resourcesRefs, instructionsSceneTitle,
+  displayItem, renderCreditTween, instructionsText,
+  renderInstrunctionSceneInfo
 }

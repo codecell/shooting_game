@@ -19,7 +19,6 @@ import explode1 from '../assets/sounds/explodeA.wav'
 import explode2 from '../assets/sounds/explodeB.wav'
 import explode3 from '../assets/sounds/explodeC.wav'
 
-
 // entities
 import {
   Player, EnemyA, EnemyB, Asteroid, Background
@@ -65,7 +64,10 @@ export default class Game extends Phaser.Scene {
  
   create () {
     // this.add.image(400, 300, 'logo');
+    this.score = { counter: 0 };
+    this.scoreText = this.add.text(16, 16, `score: ${this.score.counter}`, { fontSize: '32px', fill: '#efefef' });
 
+    console.log(this.score, '<<<<< >>>>')
     this.anims.create({
       key: 'enemyAimage',
       frames: this.anims.generateFrameNumbers('enemyAimage'),
@@ -140,6 +142,7 @@ export default class Game extends Phaser.Scene {
           enemy.onDestroy();
         }
         enemy.explode(true);
+
         playerAmmo.destroy();
       }
     });
@@ -169,10 +172,64 @@ export default class Game extends Phaser.Scene {
       }
     }
 
+    for (var i = 0; i < this.enemies.getChildren().length; i++) {
+      var enemy = this.enemies.getChildren()[i];
+      enemy.update();
 
-    this.doCollision(this.enemies, this.player);
-    this.doCollision(this.enemyAmmos, this.player);
-    this.doCollision(this.playerAmmos)
+      if (enemy.x < -enemy.displayWidth ||
+        enemy.x > this.game.config.width + enemy.displayWidth ||
+        enemy.y < -enemy.displayHeight * 4 ||
+        enemy.y > this.game.config.height + enemy.displayHeight) {
+        if (enemy) {
+          if (enemy.onDestroy !== undefined) {
+            enemy.onDestroy();
+          }
+          enemy.destroy();
+        }
+      }
+
+      this.physics.add.overlap(this.player, this.enemies, function(player, enemy) {
+        if (!player.getData("isDead") &&
+            !enemy.getData("isDead")) {
+          player.explode(false);
+          player.onDestroy();
+          enemy.explode(true);
+        }
+      });
+    }
+
+    // console.log(this.doCollision(this.enemies, this.player), '>>>>>>>>>.')
+    for (var i = 0; i < this.enemyAmmos.getChildren().length; i++) {
+      var laser = this.enemyAmmos.getChildren()[i];
+      laser.update();
+      if (laser.x < -laser.displayWidth ||
+        laser.x > this.game.config.width + laser.displayWidth ||
+        laser.y < -laser.displayHeight * 4 ||
+        laser.y > this.game.config.height + laser.displayHeight) {
+        if (laser) {
+          laser.destroy();
+        }
+      }
+
+      this.physics.add.overlap(this.player, this.enemyAmmos, function(player, laser) {
+        if (!player.getData("isDead") &&
+            !laser.getData("isDead")) {
+          player.explode(false);
+          player.onDestroy();
+          laser.destroy();
+        }
+      });
+    }
+
+    this.playerAmmos.getChildren().forEach((playerAmmo) => {
+      if (playerAmmo.x < -playerAmmo.displayWidth ||
+        playerAmmo.x > this.game.config.width + playerAmmo.displayWidth ||
+        playerAmmo.y < -playerAmmo.displayHeight * 4 ||
+        playerAmmo.y > this.game.config.height + playerAmmo.displayHeight) {
+
+          playerAmmo && playerAmmo.destroy();
+      }
+    })
 
     this.backgrounds.forEach((bg) => {
       bg.update();
@@ -189,32 +246,5 @@ export default class Game extends Phaser.Scene {
     })
 
     return arr;
-  }
-
-  doCollision (entityA, entityB = false) {
-    entityA.getChildren().forEach((adversary) => {
-      adversary.update();
-
-      if (adversary.x < -adversary.displayWidth ||
-        adversary.x > this.game.config.width + adversary.displayWidth ||
-        adversary.y < -adversary.displayHeight * 4 ||
-        adversary.y > this.game.config.height + adversary.displayHeight) {
-        if (adversary) {
-          if (adversary.onDestroy !== undefined) {
-            adversary.onDestroy();
-          }
-          adversary.destroy();
-        }
-      }
-
-      entityB && this.physics.add.overlap(entityB, entityA, (player, adversary) => {
-        if (!player.getData("isDead") &&
-            !adversary.getData("isDead")) {
-          player.explode(false);
-          player.onDestroy();
-          adversary.explode(true);
-        };
-      });
-    });
   }
 };

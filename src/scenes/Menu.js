@@ -1,16 +1,13 @@
-import Phaser from 'phaser'
+import 'phaser';
+import Button from '../utils/Button' 
 
-class Menu extends Phaser.Scene {
+export default class Menu extends Phaser.Scene {
   constructor () {
-    super('Game')
+    super('Menu');
   }
-  
-  preload() {
-    // this.load.image("logo", logoImg);
-  }
-
-  create() {
-    // const logo = this.add.image(400, 150, "logo");
+ 
+  create () {
+    // config.height/2 = 320, config.width/2 = 250
     this.title = this.add.text(
       this.game.config.width * 0.5, 128,
       `Shooting Game`,
@@ -22,17 +19,29 @@ class Menu extends Phaser.Scene {
       align: 'center'
     });
   
-    this.title.setOrigin(0.5);  
-  
-    this.tweens.add({
-      targets: [this.title],
-      y: 450,
-      duration: 2000,
-      ease: "Power2",
-      yoyo: true,
-      loop: -1
-    });
-  }
-}
+    this.title.setOrigin(0.5);
+    
+    const halfWidth = 500/2;
+    const halfHeight = 640/2;
+     // Game
+    this.gameButton = new Button(this, halfWidth, halfHeight - 100, 'blueButton1', 'blueButton2', 'Play', 'Game');
 
-export default Menu
+    // Options
+    this.optionsButton = new Button(this, halfWidth, halfHeight, 'blueButton1', 'blueButton2', 'Options', 'Options');
+
+    // Instructions
+    this.instructionsButton = new Button(this, halfWidth, halfHeight + 200, 'blueButton1', 'blueButton2', 'Guides', 'Instructions');
+
+    // Credits
+    this.creditsButton = new Button(this, halfWidth, halfHeight + 100, 'blueButton1', 'blueButton2', 'Credits', 'Credits');
+
+    this.model = this.sys.game.globals.model;
+
+    if (this.model.musicOn === true && this.model.bgMusicPlaying === false) {
+      this.bgMusic = this.sound.add('bgMusic', { volume: 0.5, loop: true });
+      this.bgMusic.play();
+      this.model.bgMusicPlaying = true;
+      this.sys.game.globals.bgMusic = this.bgMusic;
+    }
+  }
+};

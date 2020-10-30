@@ -1,9 +1,10 @@
 *{
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 body {
-  /* padding-left: 32%; */
   background:
     radial-gradient(black 15%, transparent 16%) 0 0,
     radial-gradient(black 15%, transparent 16%) 8px 8px,

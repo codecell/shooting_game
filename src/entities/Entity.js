@@ -1,4 +1,6 @@
 import 'phaser';
+import Player from './Player'
+import { Game } from '../scenes'
 
 class Entity extends Phaser.GameObjects.Sprite {
   constructor(scene, x, y, key, type) {
@@ -16,6 +18,13 @@ class Entity extends Phaser.GameObjects.Sprite {
       this.setTexture("explosionImg");
       this.play("explosionImg");
       this.scene.sfx.explosions[Phaser.Math.Between(0, this.scene.sfx.explosions.length - 1)].play();
+
+      // Update score in Realtime
+      if ((this.__proto__.constructor !== Player) && (this.scene.__proto__.constructor == Game)) {
+        this.scene.score.counter += 5;
+
+        this.scene.scoreText.setText(`Score: ${this.scene.score.counter}`);
+      }
 
       if (this.shootTimer !== undefined) {
         if (this.shootTimer) {

@@ -9,8 +9,8 @@ class Player extends Entity {
     this.setData("timerShootDelay", 10);
     this.setData("timerShootTick", this.getData("timerShootDelay") - 1);
 
-    this.scaleX = 0.2;
-    this.scaleY = 0.2;
+    this.scaleX = 0.21;
+    this.scaleY = 0.21;
   }
 
   moveUp() {
