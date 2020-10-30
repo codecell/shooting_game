@@ -5,6 +5,7 @@ This is a custom implementation of the popular space shooter game using the [Pha
 - [Live version](#Live-version)
 - [UI Preview](#UI-Preview)
 - [Description](#Description)
+- [Credits](#Credits)
 - [Technologies used](#Technologies)
 - [Installation](#Installation)
 - [Author](#author)
@@ -22,7 +23,39 @@ The game is hosted here => [fightgame](https://fightgame.netlify.app/).
 
 
 ## Description
-<!--  -->
+  This is basically a shooter desktop game, a single player game. The player has 3 enemy objects(An Artificial Intelliegnce-powered Asteroid and 2 enemy spaceships) to either gun down or avoid completely. 
+  The game can be controlled with the following commands;
+            ====== Movement =====
+
+                Use Key:
+
+                  W - To move UP
+                  S - To move DOWN
+                  A - To move LEFT
+              D - To move RIGHT
+
+            ====== Attack ======
+
+            Use Key:
+            
+              SPACE BAR - To SHOOT
+
+            ====== Tip ======
+
+            The Asteroids will come at
+            you directly, Make them
+            a priority on sight.
+  ## Scoring
+  For each succesful shootdown of an enemy, a player is awarded 5 points.
+
+## Credits
+  Much appreciation goes to the followoing for makin available the assets used for making this game, accessed from [Opengameart.org](https://opengameart.org/).
+
+  a. Explosion Sounds: [Master484 ](https://m484games.ucoz.com)
+
+  b. Asteriod: DcZanick
+
+  c. Background: Scorcher24
 
 ## Technologies
 - The game was developed with [Phaser](https://phaser.io/).
