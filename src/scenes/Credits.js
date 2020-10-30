@@ -37,11 +37,11 @@ export default class Credits extends Phaser.Scene {
     );
 
     this.resourcesByTween = renderCreditTween(
-      this.tweens, this.resourcesText, this.resourcesByTween,  this.scene, 6000, this, true
+      this.tweens, this.resourcesText, this.resourcesByTween,  this.scene, 7000, this, true
     );
 
     this.madeByTween = renderCreditTween(
-      this.tweens, this.madeByText, this.madeByTween,  this.scene, 7000, this
+      this.tweens, this.madeByText, this.madeByTween,  this.scene, 9000, this
     );
   }
 };

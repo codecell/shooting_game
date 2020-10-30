@@ -1,55 +1,63 @@
-# Phaser 3 Webpack Project Template
+# Shooting Game
+This is a custom implementation of the popular space shooter game using the [Phaser](https://phaser.io/) library.
 
-A Phaser 3 project template with ES6 support via [Babel 7](https://babeljs.io/) and [Webpack 4](https://webpack.js.org/)
-that includes hot-reloading for development and production-ready builds.
+## Outline
+- [Live version](#Live-version)
+- [UI Preview](#UI-Preview)
+- [Description](#Description)
+- [Technologies used](#Technologies)
+- [Installation](#Installation)
+- [Author](#author)
+- [Licence](#licence)
 
-Loading images via JavaScript module `import` is also supported.
+## Live version
+The game is hosted here => [fightgame](https://fightgame.netlify.app/).
 
-## Requirements
+## UI Preview
 
-[Node.js](https://nodejs.org) is required to install dependencies and run scripts via `npm`.
-
-## Available Commands
-
-| Command | Description |
-|---------|-------------|
-| `npm install` | Install project dependencies |
-| `npm start` | Build project and open web server running project |
-| `npm run build` | Builds code bundle with production settings (minification, uglification, etc..) |
-
-## Writing Code
-
-After cloning the repo, run `npm install` from your project directory. Then, you can start the local development
-server by running `npm start`.
+|                |                |
+|----------------|----------------|
+|<img src='./src/assets/readme/game.png' />|<img src='./src/assets/readme/game2.png' />|
+!<img src='./src/assets/readme/menu.png' />|!<img src='./src/images/instructions.png' />|
 
 
-After starting the development server with `npm start`, you can edit any files in the `src` folder
-and webpack will automatically recompile and reload your server (available at `http://localhost:8080`
-by default).
+## Description
+<!--  -->
 
-## Customizing Template
+## Technologies
+- The game was developed with [Phaser](https://phaser.io/).
+- HTML5
+- Javascript
+- CSS
+- [Webpack 4](https://webpack.js.org/) for managing javascript assets.
+- [Github Actions](https://github.com/features/actions) for CI.
 
-### Babel
-You can write modern ES6+ JavaScript and Babel will transpile it to a version of JavaScript that you
-want your project to support. The targeted browsers are set in the `.babelrc` file and the default currently
-targets all browsers with total usage over "0.25%" but excludes IE11 and Opera Mini.
 
-  ```
-  "browsers": [
-    ">0.25%",
-    "not ie 11",
-    "not op_mini all"
-  ]
-  ```
+## Installation
+Follow the steps below run the game in a local environment; First ensure you have [Node.js](https://nodejs.org).
 
-### Webpack
-If you want to customize your build, such as adding a new webpack loader or plugin (i.e. for loading CSS or fonts), you can
-modify the `webpack/base.js` file for cross-project changes, or you can modify and/or create
-new configuration files and target them in specific npm tasks inside of `package.json'.
+1. Clone the repository from a terminal 
+    ```git clone https://github.com/codecell/shooting_game.git```.
+2. Navigate to the project directory.
+    ```cd shooting_game```
+3. Install Javascript dependencies.
+    ```yarn OR npm install```
+4. Start the webback server.
+    ```npm run start```
+webpack will automatiaclly serve the compiled build on http://localhost:8081/.
 
-## Deploying Code
-After you run the `npm run build` command, your code will be built into a single bundle located at 
-`dist/bundle.min.js` along with any other assets you project depended. 
 
-If you put the contents of the `dist` folder in a publicly-accessible location (say something like `http://mycoolserver.com`), 
-you should be able to open `http://mycoolserver.com/index.html` and play your game.
+## Author
+
+👤 **Alfred Ezaka**
+
+- Github: [@codecell](https://github.com/codecell)
+- Twitter: [@the_codecell](https://twitter.com/the_codecell) 
+- Linkedin: [ezaka alfred](https://www.linkedin.com/in/alfrednoble/)
+
+## Show your support
+
+Give a ⭐️ if you like this project!
+
+## Licence
+- MIT

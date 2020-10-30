@@ -25,7 +25,7 @@ const renderCreditTween = (tweens, target, tweenTarget, scene, duration, model, 
     y: -300,
     ease: 'Power1',
     duration: duration,
-    delay: 1000,
+    delay: 200,
     onComplete: ((tweenTarget) => {
       tweenTarget.destroy;
 
@@ -75,32 +75,7 @@ const renderInstrunctionSceneInfo = (add, content, widthz, x, y,  fontSize) => {
   });
 }
 
-const doCollision  = (entityA, entityB = 0) => {
-  entityA.getChildren().forEach((adversary) => {
-    adversary.update();
 
-    if (adversary.x < -adversary.displayWidth ||
-      adversary.x > this.game.config.width + adversary.displayWidth ||
-      adversary.y < -adversary.displayHeight * 4 ||
-      adversary.y > this.game.config.height + adversary.displayHeight) {
-      if (adversary) {
-        if (adversary.onDestroy !== undefined) {
-          adversary.onDestroy();
-        }
-        adversary.destroy();
-      }
-    }
-
-    entityB && this.physics.add.overlap(entityA, entityB, (player, adversary) => {
-      if (!player.getData("isDead") &&
-          !adversary.getData("isDead")) {
-        player.explode(false);
-        player.onDestroy();
-        adversary.explode(true);
-      };
-    });
-  });
-}
 
 export {
   musicDetails, resourcesRefs, instructionsSceneTitle,
