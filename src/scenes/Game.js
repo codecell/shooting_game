@@ -7,7 +7,6 @@ import playerImage from '../assets/player.png';
 import enemyAimage from '../assets/enemyAimage.png';
 import enemyBimage from '../assets/enemyBimage.png';
 import bgA from '../assets/bgA.png';
-import bgB from '../assets/bgB.png';
 
 import explosionImage from '../assets/explosionImg.PNG';
 import enemyAmmoImage from '../assets/enemyAmmoImage.png';
@@ -40,7 +39,6 @@ export default class Game extends Phaser.Scene {
       enemyAmmoImage,
       playerAmmoImage,
       bgA,
-      bgB,
     };
 
     Object.keys(ImageAssetsHash).forEach((item) => {
