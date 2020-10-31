@@ -25,8 +25,8 @@ body,
 .form-wrapper {
   z-index: 10000;
   position: absolute;
-  top: 30%;
-  left: 39%;
+  top: 38%;
+  left: 38%;
 }
 
 .form-wrapper > input {

@@ -9,13 +9,28 @@ class GameOver extends Phaser.Scene {
   }
 
   create() {
+    // info
+    const infoMessage = `
+      * NOTE 
+      To use any of the control key letters (A, S, D, W) 
+      in your NAME, 
+      Press SHIFT + KEY. And this means;
+        --- 
+            A = Caps-lock OFF   +  shift  +  key A 
+            a = Caps-lock ON  +  shift  +  Key A 
+        ---
+        e.t.c
+    `;
+    this.info = this.add.text(
+      5, 10, infoMessage, { fontSize: '14px', fill: 'grey', fontFamily: 'monospace' },
+    );
     // Final score
-    this.scoreText = this.add.text(40, 80, '', { fontSize: '23px', fill: '#f6830f' });
+    this.scoreText = this.add.text(40, 150, '', { fontSize: '22px', fill: '#f6830f' });
 
     const prettyDisplay = `
       --- Your Score ---
 
-              ${window.score}
+               ${window.score}
     `;
     this.scoreText.setText(`${prettyDisplay}`);
 
@@ -47,7 +62,7 @@ class GameOver extends Phaser.Scene {
       postScore(playerNameTag.value, window.score);
     });
 
-    const vertPoint = 400;
+    const vertPoint = 440;
 
     this.buttonRestart = new Button(this, 250, vertPoint, 'blueButton1', 'blueButton2', 'Restart', 'Game');
 

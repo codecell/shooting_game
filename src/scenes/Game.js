@@ -104,11 +104,7 @@ export default class Game extends Phaser.Scene {
       'player',
     );
 
-    this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-    this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
-    this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
-    this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
-    this.keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+    this.keys = this.input.keyboard.addKeys('W, S, A, D, SPACE');
 
     this.enemies = this.add.group();
     this.enemyAmmos = this.add.group();
@@ -149,19 +145,26 @@ export default class Game extends Phaser.Scene {
   }
 
   update() {
+    const {
+      W, S, A, D, SPACE,
+    } = this.keys;
+
     if (!this.player.getData('isDead')) {
       this.player.update();
-      if (this.keyW.isDown) {
+
+      if (W.isDown) {
         this.player.moveUp();
-      } else if (this.keyS.isDown) {
+      } else if (S.isDown) {
         this.player.moveDown();
       }
-      if (this.keyA.isDown) {
+
+      if (A.isDown) {
         this.player.moveLeft();
-      } else if (this.keyD.isDown) {
+      } else if (D.isDown) {
         this.player.moveRight();
       }
-      if (this.keySpace.isDown) {
+
+      if (SPACE.isDown) {
         this.player.setData('isShooting', true);
       } else {
         this.player.setData('timerShootTick', this.player.getData('timerShootDelay') - 1);
@@ -207,8 +210,8 @@ export default class Game extends Phaser.Scene {
       }
 
       this.physics.add.overlap(this.player, this.enemyAmmos, (player, laser) => {
-        if (!player.getData('isDead')
-            && !laser.getData('isDead')) {
+        if (!player.getData('isDead') && !laser.getData('isDead')
+        ) {
           player.explode(false);
           player.onDestroy();
           laser.destroy();

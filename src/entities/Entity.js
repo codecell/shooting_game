@@ -50,7 +50,9 @@ class Entity extends Phaser.GameObjects.Sprite {
     }
 
     if (this.getData('isDead') && this.constructor === Player) {
-      this.scene.keyW = this.scene.input.keyboard.removeKey('W');
+      // this.scene.keyW = this.scene.input.keyboard.removeKey('W');
+      this.scene.keys = this.scene.input.keyboard.removeAllKeys(true);
+      // scene.input.keyboard.removeAllKeys(destroy);
       // this.scene.input.keyboard.removeAllKeys(true);
     }
   }
