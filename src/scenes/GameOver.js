@@ -27,6 +27,7 @@ class GameOver extends Phaser.Scene {
     const playerNameTag = document.createElement('input');
     playerNameTag.id = 'username';
     playerNameTag.setAttribute('placeholder', 'Enter your Name');
+    playerNameTag.setAttribute('autocomplete', 'off');
 
     const saveScoreBtn = document.createElement('button');
     saveScoreBtn.innerText = 'Save My score';
