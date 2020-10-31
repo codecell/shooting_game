@@ -1,8 +1,8 @@
 import Phaser from 'phaser';
 import {
-  resourcesRefs, musicDetails,
   displayItem, renderCreditTween,
 } from '../utils/constants';
+import { resourcesRefs, musicDetails } from '../utils/creditsUtils';
 
 export default class Credits extends Phaser.Scene {
   constructor() {
@@ -12,8 +12,8 @@ export default class Credits extends Phaser.Scene {
   create() {
     this.creditsText = this.add.text(0, 0, 'Credits', { fontSize: '32px', fill: '#fff' });
     this.madeByText = this.add.text(0, 0, 'Created By: Alfred Ezaka', { fontSize: '26px', fill: '#fff' });
-    this.musicByText = this.add.text(0, 0, musicDetails, { fontSize: '26px', fill: '#fff' });
-    this.resourcesText = this.add.text(0, 0, resourcesRefs, { fontSize: '18px', fill: '#fff' });
+    this.musicByText = this.add.text(0, 0, musicDetails(), { fontSize: '26px', fill: '#fff' });
+    this.resourcesText = this.add.text(0, 0, resourcesRefs(), { fontSize: '18px', fill: '#fff' });
 
     // (config.width/2, config.height/2, config.width, config.height);
     this.zone = this.add.zone(250, 320, 500, 640);
@@ -41,7 +41,7 @@ export default class Credits extends Phaser.Scene {
     );
 
     this.madeByTween = renderCreditTween(
-      this.tweens, this.madeByText, this.madeByTween, this.scene, 9000, this,
+      this.tweens, this.madeByText, this.madeByTween, this.scene, 8000, this,
     );
   }
 }

@@ -19,6 +19,14 @@ export default class Button extends Phaser.GameObjects.Container {
 
       // Reset Score
       window.score = 0;
+
+      const body = document.getElementsByTagName('body')[0];
+      const wrapper = document.querySelector('.form-wrapper');
+      // const 
+      if (wrapper) {
+        // Remove imput form from the Dom
+        body.removeChild(wrapper);
+      }
     });
 
     this.button.on('pointerover', () => {

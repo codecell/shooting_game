@@ -5,6 +5,12 @@
 }
 
 body {
+  min-height: 100vh;
+  text-align: center;
+}
+
+body, .form-wrapper > input, 
+.form-wrapper > button {
   background:
     radial-gradient(black 15%, transparent 16%) 0 0,
     radial-gradient(black 15%, transparent 16%) 8px 8px,
@@ -12,7 +18,60 @@ body {
     radial-gradient(rgba(255, 255, 255, 0.1) 15%, transparent 20%) 8px 9px;
   background-color: rgba(0, 0, 0, 0.9);
   background-size: 16px 16px;
-  min-height: 100vh;
   color: #efefef;
-  text-align: center;
 }
+
+.form-wrapper {
+  z-index: 10000;
+  position: absolute;
+  top: 30%;
+  left: 40%;
+}
+
+.form-wrapper > input {
+  display: block;
+  height: 40px;
+  padding-left: 1em;
+  min-width: 300px;
+  margin-bottom: 2%;
+}
+
+.form-wrapper > button {
+  padding: 10px 15px;
+  color: #f6830f;
+  transition: 250ms;
+  text-shadow: 1px 1px 2px #1b262c;
+  font-weight: bold;
+  margin-bottom: 10%;
+}
+
+.form-wrapper > input,
+.form-wrapper > button {
+  border: 1.2px solid #555;
+  border-radius: 2px;
+  font-size: 16px;
+}
+
+.form-wrapper > input:focus,
+.form-wrapper > button:focus {
+  outline: none;
+}
+
+.form-wrapper > button:hover {
+  background-color: #b85f06;
+  color: #b4b1b1;
+  border: 1.2px solid #b85f06;
+}
+
+.success, .error {
+  font-size: 1.1em;
+}
+
+.success {
+  color: forestgreen;
+}
+
+.error {
+  color: tomato;
+}
+

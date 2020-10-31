@@ -110,6 +110,10 @@ export default class Game extends Phaser.Scene {
     this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     this.keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
+    if (this.__proto__.constructor !== Game) {
+      this.keyW = this.input.keyboard.removeKey('W')
+    }
+
     this.enemies = this.add.group();
     this.enemyAmmos = this.add.group();
     this.playerAmmos = this.add.group();

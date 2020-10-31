@@ -7,6 +7,7 @@ import Instructions from '../scenes/Instructions';
 import Game from '../scenes/Game';
 import GameOver from '../scenes/GameOver';
 import Options from '../scenes/Options';
+import LeaderBoard from '../scenes/LeaderBoard'
 
 export default {
   type: Phaser.AUTO,
@@ -20,7 +21,7 @@ export default {
       gravity: { x: 0, y: 0 },
     },
   },
-  scene: [Boot, Preloader, Menu, Options, Credits, Instructions, Game, GameOver],
+  scene: [Boot, Preloader, Menu, Options, Credits, Instructions, Game, GameOver, LeaderBoard],
   pixelArt: true,
   roundPixels: true,
 };

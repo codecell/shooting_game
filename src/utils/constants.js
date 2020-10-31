@@ -1,19 +1,5 @@
 import Phaser from 'phaser';
 
-const musicDetails = `
-  Music By: Zack Hemsey
-
-  Song Title: The Way
-`;
-
-const resourcesRefs = `
-  Explosion Sounds: Master484
-
-  Asteriod: DcZanick
-
-  Background: Scorcher24
-`;
-
 const displayItem = (item, zone) => Phaser.Display.Align.In.Center(
   item,
   zone,
@@ -28,7 +14,7 @@ const renderCreditTween = (
   duration,
   delay: 200,
   onComplete: ((tweenTarget) => {
-    tweenTarget.destroy();
+    tweenTarget.destroy;
 
     if (bool) {
       scene.start('Menu');
@@ -74,7 +60,7 @@ const renderInstrunctionSceneInfo = (add, content, widthz, x, y, fontSize) => ad
 );
 
 export {
-  musicDetails, resourcesRefs, instructionsSceneTitle,
+  instructionsSceneTitle,
   displayItem, renderCreditTween, instructionsText,
   renderInstrunctionSceneInfo,
 };
