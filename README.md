@@ -19,14 +19,15 @@ The game is hosted here => [fightgame](https://fightgame.netlify.app/).
 
 |                |                |
 |----------------|----------------|
-|<img src='./src/assets/readme/game.png' />|<img src='./src/assets/readme/game2.png' />|
+|<img src='./src/assets/readme/game.png' />|<img src='./src/assets/readme/leadboard.png' />|
 |<img src='./src/assets/readme/menu.png' />|<img src='./src/assets/readme/instructions.png' />|
 
 
 ## Description
   This is basically a shooter desktop game, a single-player game. The player has 3 enemy objects(An Artificial Intelligence-powered Asteroid and 2 enemy spaceships) to either gun down or avoid completely. 
   The game can be controlled with the following commands;
-            ====== Movement =====
+      <em>
+        ====== Movement =====
 
                 Use Key:
 
@@ -46,6 +47,10 @@ The game is hosted here => [fightgame](https://fightgame.netlify.app/).
             The Asteroids will come at
             you directly, Make them
             a priority on sight.
+          
+      </em>
+           
+          
   ## Scoring
   For each successful shootdown of an enemy, a player is awarded 5 points.
 
