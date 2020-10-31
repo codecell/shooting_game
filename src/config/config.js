@@ -7,7 +7,7 @@ import Instructions from '../scenes/Instructions';
 import Game from '../scenes/Game';
 import GameOver from '../scenes/GameOver';
 import Options from '../scenes/Options';
-import LeaderBoard from '../scenes/LeaderBoard'
+import LeaderBoard from '../scenes/LeaderBoard';
 
 export default {
   type: Phaser.AUTO,

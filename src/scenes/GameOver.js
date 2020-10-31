@@ -8,7 +8,7 @@ class GameOver extends Phaser.Scene {
     super('GameOver');
   }
 
-  create() {  
+  create() {
     // Final score
     this.scoreText = this.add.text(40, 80, '', { fontSize: '23px', fill: '#f6830f' });
 
@@ -25,10 +25,10 @@ class GameOver extends Phaser.Scene {
     wrapper.classList.add('form-wrapper');
 
     const playerNameTag = document.createElement('input');
-    playerNameTag.id = 'username'
+    playerNameTag.id = 'username';
     playerNameTag.setAttribute('placeholder', 'Enter your Name');
 
-    const saveScoreBtn = document.createElement('button');    
+    const saveScoreBtn = document.createElement('button');
     saveScoreBtn.innerText = 'Save My score';
     saveScoreBtn.id = 'btnSaveScore';
 
@@ -38,14 +38,14 @@ class GameOver extends Phaser.Scene {
     wrapper.appendChild(playerNameTag);
     wrapper.appendChild(saveScoreBtn);
     wrapper.appendChild(flashTag);
-    
+
     body.append(wrapper);
 
     saveScoreBtn.addEventListener('click', () => {
-      // send data      
+      // send data
       postScore(playerNameTag.value, window.score);
     });
-    
+
     const vertPoint = 400;
 
     this.buttonRestart = new Button(this, 250, vertPoint, 'blueButton1', 'blueButton2', 'Restart', 'Game');
@@ -55,7 +55,7 @@ class GameOver extends Phaser.Scene {
 
     // Options
     this.leadersButton = new Button(
-      this, 250, vertPoint + 2 * 70, 'blueButton1', 'blueButton2', 'Top Scores', 'LeaderBoard'
+      this, 250, vertPoint + 2 * 70, 'blueButton1', 'blueButton2', 'Top Scores', 'LeaderBoard',
     );
   }
 }

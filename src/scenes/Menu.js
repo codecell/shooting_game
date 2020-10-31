@@ -41,11 +41,11 @@ export default class Menu extends Phaser.Scene {
 
     // Instructions
     this.instructionsButton = new Button(
-      this, halfWidth, halfHeight + 2*70, 'blueButton1', 'blueButton2', 'Guides', 'Instructions',
+      this, halfWidth, halfHeight + 2 * 70, 'blueButton1', 'blueButton2', 'Guides', 'Instructions',
     );
 
     this.leadersButton = new Button(
-      this, halfWidth, halfHeight + 3*70, 'blueButton1', 'blueButton2', 'Top Scores', 'LeaderBoard'
+      this, halfWidth, halfHeight + 3 * 70, 'blueButton1', 'blueButton2', 'Top Scores', 'LeaderBoard',
     );
 
     this.model = this.sys.game.globals.model;

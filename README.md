@@ -8,6 +8,7 @@ This is a custom implementation of the popular space shooter game using the [Pha
 - [Credits](#Credits)
 - [Technologies used](#Technologies)
 - [Installation](#Installation)
+- [Unit Tests](#Unit-Tests)
 - [Author](#author)
 - [Licence](#licence)
 
@@ -79,6 +80,10 @@ Follow the steps below run the game in a local environment; First ensure you hav
     ```npm run start```
 webpack will automatically serve the compiled build on http://localhost:8081/.
 
+## Unit-Tests
+1. After installing the project.
+2. Run  ```yarn OR npm install```
+3. Run ``` npm run test ``` in the terminal to run the unit tests Locally.
 
 ## Author
 

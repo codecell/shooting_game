@@ -19,7 +19,8 @@
     "no-plusplus": "off",
     "no-restricted-globals": "off",
     "no-underscore-dangle": "off",
-    "import/no-cycle": "off"
+    "import/no-cycle": "off",
+    "no-unused-expressions": "off"
   },
   "ignorePatterns": [
     "dist/",

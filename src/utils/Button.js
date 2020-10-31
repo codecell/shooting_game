@@ -22,7 +22,7 @@ export default class Button extends Phaser.GameObjects.Container {
 
       const body = document.getElementsByTagName('body')[0];
       const wrapper = document.querySelector('.form-wrapper');
-      // const 
+
       if (wrapper) {
         // Remove imput form from the Dom
         body.removeChild(wrapper);

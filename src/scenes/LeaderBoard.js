@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import Button from '../utils/Button';
-import { leaderBoard,getLeaderBoard } from '../utils/scorecard'
+import { leaderBoard, getLeaderBoard } from '../utils/scorecard';
 
 export default class LeaderBoard extends Phaser.Scene {
   constructor() {
@@ -8,10 +8,8 @@ export default class LeaderBoard extends Phaser.Scene {
   }
 
   create() {
-    const scoreData = getLeaderBoard();
-
     for (let index = 0; index < 10; index++) {
-      let verticalLocus = 140;
+      const verticalLocus = 140;
 
       const gameDetails = window.scoreSheet[index];
 
@@ -28,7 +26,7 @@ export default class LeaderBoard extends Phaser.Scene {
           align: 'center',
         },
       );
-     }
+    }
 
     this.title = this.add.text(
       this.game.config.width * 0.5, 80,

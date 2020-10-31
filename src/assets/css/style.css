@@ -9,7 +9,8 @@ body {
   text-align: center;
 }
 
-body, .form-wrapper > input, 
+body,
+.form-wrapper > input,
 .form-wrapper > button {
   background:
     radial-gradient(black 15%, transparent 16%) 0 0,
@@ -63,7 +64,8 @@ body, .form-wrapper > input,
   border: 1.2px solid #b85f06;
 }
 
-.success, .error {
+.success,
+.error {
   font-size: 1.1em;
 }
 
@@ -74,4 +76,3 @@ body, .form-wrapper > input,
 .error {
   color: tomato;
 }
-
