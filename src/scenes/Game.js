@@ -62,7 +62,7 @@ export default class Game extends Phaser.Scene {
   }
 
   create() {
-    this.scoreText = this.add.text(16, 16, `score: ${window.score}`, { fontSize: '32px', fill: '#efefef' });
+    this.scoreText = this.add.text(16, 16, `score: ${window.score}`, { fontSize: '32px', fill: '#f6830f' });
 
     this.anims.create({
       key: 'enemyAimage',
