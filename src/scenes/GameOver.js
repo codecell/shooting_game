@@ -12,14 +12,14 @@ class GameOver extends Phaser.Scene {
     // info
     const infoMessage = `
       * NOTE 
-      To use any of the control key letters (A, S, D, W) 
-      in your NAME, 
-      Press SHIFT + KEY. And this means;
+      To use any of the 
+      control key letters (A, S, D, W, SPACE) in your NAME, 
+      Press SHIFT + KEY. e.g,
         --- 
             A = Caps-lock OFF   +  shift  +  key A 
             a = Caps-lock ON  +  shift  +  Key A 
         ---
-        e.t.c
+        e.t.c.
     `;
     this.info = this.add.text(
       5, 10, infoMessage, { fontSize: '14px', fill: 'grey', fontFamily: 'monospace' },

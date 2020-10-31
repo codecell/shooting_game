@@ -77,16 +77,16 @@ Follow the steps below run the game in a local environment; First ensure you hav
     ```git clone https://github.com/codecell/shooting_game.git```.
 2. Navigate to the project directory.
     ```cd shooting_game```
-3. Install Javascript dependencies.
+3. Install project dependencies.
     ```yarn OR npm install```
 4. Start the webback server.
     ```npm run start```
 webpack will automatically serve the compiled build on http://localhost:8081/.
 
 ## Unit-Tests
-1. After installing the project.
-2. Run  ```yarn OR npm install```
-3. Run ``` npm run test ``` in the terminal to run the unit tests Locally.
+After cloning this repo, in the terminal
+1. Run  ```yarn OR npm install``` to install project dependencies.
+2. Run ```npm run test ``` to run the unit tests locally.
 
 ## Author
 
