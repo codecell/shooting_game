@@ -7,8 +7,8 @@
     "test": "jest --verbose",
     "build": "webpack --config webpack/prod.js",
     "start": "webpack-dev-server --config webpack/base.js --open",
-    "eslint": "./node_modules/.bin/eslint ./webpack/**.*js ./src/**.*js ./src/**/**.*js",
-    "eslint-fix": "./node_modules/.bin/eslint ./webpack/**.*js ./src/**.*js ./src/**/**.*js ./jest.config.js --fix",
+    "eslint": "./node_modules/.bin/eslint ./**.*js ./__mocks__/**.*js ./webpack/**.*js ./src/**.*js ./src/**/**.*js",
+    "eslint-fix": "./node_modules/.bin/eslint ./**.*js ./__mocks__/**.*js ./webpack/**.*js ./src/**.*js ./src/**/**.*js --fix",
     "stylelint": "npx stylelint **/*.{css,scss}",
     "stylelint-fix": "npx stylelint **/*.{css,scss} --fix"
   },

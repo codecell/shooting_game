@@ -5,14 +5,14 @@ module.exports = {
       {
         targets: {
           node: 'current',
-          "browsers": [
-            ">0.25%",
-            "not ie 11",
-            "not op_mini all"
-          ]
+          browsers: [
+            '>0.25%',
+            'not ie 11',
+            'not op_mini all',
+          ],
         },
       },
     ],
   ],
-  "plugins": ["@babel/plugin-transform-runtime"]
+  plugins: ['@babel/plugin-transform-runtime'],
 };
