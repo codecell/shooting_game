@@ -16,11 +16,11 @@ class GameOver extends Phaser.Scene {
       control key letters (A, S, D, W, SPACE) in your NAME, 
       Press SHIFT + KEY. e.g,
       to use letter 'a' in your name
-        --- 
-            A = Caps-lock OFF   +  shift  +  key A 
-            a = Caps-lock ON  +  shift  +  Key A 
-        ---
-        e.t.c.
+      --- 
+        Uppercase 'A' = Caps-lock OFF  +  Shift Key  +  key A 
+        Lowercase 'a' = Caps-lock ON   +  Shift Key  +  key A 
+      ---
+      e.t.c.
     `;
     this.info = this.add.text(
       5, 10, infoMessage, { fontSize: '14px', fill: 'grey', fontFamily: 'monospace' },
@@ -31,7 +31,7 @@ class GameOver extends Phaser.Scene {
     const prettyDisplay = `
       --- Your Score ---
 
-               ${window.score}
+            ${window.score}
     `;
     this.scoreText.setText(`${prettyDisplay}`);
 
