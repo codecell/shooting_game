@@ -6,7 +6,6 @@
 
 body {
   text-align: center;
-  max-width: 1200px;
   height: 100vh;
 }
 
@@ -28,6 +27,7 @@ body,
   position: absolute;
   top: 45%;
   left: 27%;
+  max-width: 1200px;
 }
 
 .form-wrapper > input {
@@ -96,15 +96,11 @@ body,
 @media (min-width: 1440px) {
   .form-wrapper {
     top: 22%;
-    left: 32%;
+    left: 38%;
   }
 }
 
 @media (min-width: 2559px) {
-  body {
-    padding-left: 40%;
-  }
-
   .form-wrapper {
     top: 12%;
     left: 43%;
