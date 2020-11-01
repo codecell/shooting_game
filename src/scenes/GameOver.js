@@ -15,7 +15,7 @@ class GameOver extends Phaser.Scene {
       To use any of the 
       control key letters (A, S, D, W, SPACE) in your NAME, 
       Press SHIFT + KEY. e.g,
-      to use letter a in your name
+      to use letter 'a' in your name
         --- 
             A = Caps-lock OFF   +  shift  +  key A 
             a = Caps-lock ON  +  shift  +  Key A 
