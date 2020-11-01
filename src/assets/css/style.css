@@ -5,8 +5,9 @@
 }
 
 body {
-  min-height: 100vh;
   text-align: center;
+  max-width: 1200px;
+  max-height: 100vh;
 }
 
 body,
@@ -25,8 +26,8 @@ body,
 .form-wrapper {
   z-index: 10000;
   position: absolute;
-  top: 38%;
-  left: 38%;
+  top: 45%;
+  left: 27%;
 }
 
 .form-wrapper > input {
@@ -76,4 +77,36 @@ body,
 
 .error {
   color: tomato;
+}
+
+@media (min-width: 767.5px) {
+  .form-wrapper {
+    top: 38%;
+    left: 38%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .form-wrapper {
+    top: 25%;
+    left: 35%;
+  }
+}
+
+@media (min-width: 1440px) {
+  .form-wrapper {
+    top: 22%;
+    left: 32%;
+  }
+}
+
+@media (min-width: 2559px) {
+  body {
+    padding-left: 40%;
+  }
+
+  .form-wrapper {
+    top: 12%;
+    left: 43%;
+  }
 }
