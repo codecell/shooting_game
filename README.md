@@ -55,11 +55,13 @@ The game is hosted here => [fightgame](https://fightgame.netlify.app/).
 ## Credits
   Much appreciation goes to the following for making available the assets used for making this game, accessed from [Opengameart.org](https://opengameart.org/).
 
-  a. Explosion Sounds: [Master484 ](https://m484games.ucoz.com)
+  a. Explosion Sounds- [Master484 ](https://m484games.ucoz.com).
 
-  b. Asteroid: DcZanick
+  b. Asteroid Art - DcZanick.
 
-  c. Background: Scorcher24
+  c. Background Art - Scorcher24.
+
+  d. Scott Westover - [phasertutorials.com/](https://phasertutorials.com/) for the basic webpack template.
 
 ## Technologies
 - The game was developed with [Phaser](https://phaser.io/).

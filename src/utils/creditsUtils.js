@@ -5,11 +5,13 @@ const musicDetails = () => `
 `;
 
 const resourcesRefs = () => `
-  Explosion Sounds: Master484
+  a. Explosion Sounds- [Master484 ](https://m484games.ucoz.com).
 
-  Asteriod: DcZanick
+  b. Asteroid Art - DcZanick.
 
-  Background: Scorcher24
+  c. Background Art - Scorcher24.
+
+  d. Scott Westover - phasertutorials.com
 `;
 
 export {
