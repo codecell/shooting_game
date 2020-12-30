@@ -26,8 +26,10 @@ body,
   z-index: 10000;
   position: absolute;
   top: 45%;
-  left: 27%;
-  max-width: 1200px;
+  left: 18%;
+  max-width: 20em;
+  text-align: center;
+  margin: auto;
 }
 
 .form-wrapper > input {
@@ -35,7 +37,7 @@ body,
   height: 40px;
   padding-left: 1em;
   min-width: 300px;
-  margin-bottom: 5%;
+  margin: 0 auto 5% auto;
 }
 
 .form-wrapper > button {
@@ -79,30 +81,37 @@ body,
   color: tomato;
 }
 
-@media (min-width: 767.5px) {
+
+@media (min-width: 767.99px) {
   .form-wrapper {
-    top: 38%;
-    left: 38%;
+    left: 26.9%;
   }
 }
 
-@media (min-width: 1024px) and (max-width: 1200px) {
+@media (min-width: 1023.99px) {
   .form-wrapper {
-    top: 24%;
-    left: 31%;
+    top: 43.5%;
+    left: 36%;
   }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1200px) {
   .form-wrapper {
-    top: 22%;
-    left: 38%;
+    top: 40%;
+    left: 39%;
+  }
+}
+
+@media (min-width: 1439px) {
+  .form-wrapper {
+    top: 34%;
+    left: 39%;
   }
 }
 
 @media (min-width: 2559px) {
   .form-wrapper {
-    top: 12%;
-    left: 43%;
+    top: 19%;
+    left: 44.2%;
   }
 }
